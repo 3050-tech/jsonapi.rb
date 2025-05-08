@@ -14,7 +14,7 @@ module JSONAPI
       offset, limit, _ = jsonapi_pagination_params
 
       # Cache the original resources size to be used for pagination meta
-      @_jsonapi_original_size = resources.size
+      @_jsonapi_original_size ||= resources.size
 
       if resources.respond_to?(:offset)
         resources = resources.offset(offset).limit(limit)
